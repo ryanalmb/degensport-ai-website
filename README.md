@@ -20,7 +20,7 @@ This repository contains the source code for the degensport.AI website, a cuttin
 
 ## Deployment
 
-The site is automatically deployed to GitHub Pages using GitHub Actions whenever changes are pushed to the `main` branch.
+The site is automatically deployed to GitHub Pages using GitHub Actions whenever changes are pushed to the `main` branch. For detailed information about the deployment process, including manual deployment instructions and configuration details, see [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Development
 
