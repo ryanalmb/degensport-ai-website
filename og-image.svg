@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/200/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00f2fe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bf00ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)" />
+  
+  <!-- Logo -->
+  <text x="600" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="120" font-weight="bold" fill="url(#textGradient)">degensport.AI</text>
+  
+  <!-- Tagline -->
+  <text x="600" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" fill="#f5f5f5">Sports alpha, streamed. Degens only. NFA.</text>
+  
+  <!-- Neon accent line -->
+  <rect x="300" y="400" width="600" height="4" fill="url(#textGradient)" rx="2" />
+</svg>
