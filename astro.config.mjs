@@ -11,6 +11,10 @@ const SITE_URL = process.env.SITE_URL || 'http://localhost:4321';
 export default defineConfig({
   site: SITE_URL,
   base: isPages ? '/degensport-ai-website/' : '/',
+  build: {
+    assets: '_astro',
+    assetsPrefix: isPages ? 'https://ryanalmb.github.io/degensport-ai-website' : undefined,
+  },
   vite: {
     plugins: [tailwindcss()]
   }
