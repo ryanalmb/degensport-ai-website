@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <div class="min-h-screen flex items-center justify-center bg-dark-bg relative overflow-hidden" role="main" aria-labelledby="error-heading">
+    <!-- Background elements -->
+    <div class="absolute inset-0 bg-gradient-to-br from-dark-bg to-black opacity-90"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,242,254,0.1)_0%,rgba(0,0,0)_70%)]"></div>
+    
+    <div class="text-center max-w-2xl mx-auto px-4 relative z-10">
+      <h1 id="error-heading" class="text-5xl md:text-7xl font-bold mb-6 text-gradient glitch" data-text="404" tabindex="-1">404</h1>
+      <h2 class="text-2xl md:text-3xl font-bold mb-6">Page Not Found</h2>
+      <p class="text-xl mb-8">The page you're looking for doesn't exist or has been moved. Always NFA.</p>
+      
+      <!-- Animated border container -->
+      <div class="neon-border rounded-lg p-6 mb-8 inline-block">
+        <p class="mb-4">While you're here, check out our main features:</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="/#features" class="bg-neon-teal text-dark-bg px-4 py-2 rounded font-bold hover:glow transition-all inline-block hover-scale">Features</a>
+          <a href="/#live" class="border border-neon-purple text-neon-purple px-4 py-2 rounded font-bold hover:bg-neon-purple hover:text-dark-bg transition-all inline-block hover-scale">Live Degen</a>
+          <a href="/#token" class="border border-neon-teal text-neon-teal px-4 py-2 rounded font-bold hover:bg-neon-teal hover:text-dark-bg transition-all inline-block hover-scale">Token</a>
+        </div>
+      </div>
+      
+      <a href="/" class="bg-neon-teal text-dark-bg px-6 py-3 rounded font-bold hover:glow transition-all inline-block hover-scale animated-border">Return to Homepage</a>
+    </div>
+  </div>
+</Layout>

@@ -1,16 +1,655 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <!-- Skip to content link for accessibility -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-neon-teal text-dark-bg px-4 py-2 rounded font-bold z-50">Skip to main content</a>
+  
+  <!-- Navbar -->
+ <nav class="sticky top-0 z-50 bg-dark-bg/80 backdrop-blur-sm border-b border-dark-border" role="navigation" aria-label="Main navigation" x-data="{ mobileMenuOpen: false }">
+   <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+     <div class="text-2xl font-bold text-gradient">degensport.AI</div>
+     
+     <!-- Mobile menu button -->
+     <button
+       class="md:hidden text-dark-fg focus:outline-none focus:ring-2 focus:ring-neon-teal rounded p-1"
+       @click="mobileMenuOpen = !mobileMenuOpen"
+       :aria-expanded="mobileMenuOpen"
+       aria-controls="mobile-menu"
+       aria-label="Toggle navigation menu"
+     >
+       <svg x-show="!mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+       </svg>
+       <svg x-show="mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+       </svg>
+     </button>
+     
+     <!-- Desktop navigation -->
+     <div class="hidden md:flex space-x-6">
+       <a href="#features" class="hover:text-neon-teal transition-colors" aria-label="Features section">Features</a>
+       <a href="#live" class="hover:text-neon-teal transition-colors" aria-label="Live Degen section">Live Degen</a>
+       <a href="#reporter" class="hover:text-neon-teal transition-colors" aria-label="Reporter section">Reporter</a>
+       <a href="#token" class="hover:text-neon-teal transition-colors" aria-label="Token section">Token</a>
+       <a href="#how" class="hover:text-neon-teal transition-colors" aria-label="How it Works section">How it Works</a>
+       <a href="#roadmap" class="hover:text-neon-teal transition-colors" aria-label="Roadmap section">Roadmap</a>
+       <a href="#faq" class="hover:text-neon-teal transition-colors" aria-label="FAQ section">FAQ</a>
+     </div>
+     
+     <!-- Mobile navigation menu -->
+     <div
+       x-show="mobileMenuOpen"
+       id="mobile-menu"
+       class="md:hidden absolute top-full left-0 right-0 bg-dark-bg border-b border-dark-border z-50"
+       x-transition:enter="transition ease-out duration-100"
+       x-transition:enter-start="transform opacity-0 scale-95"
+       x-transition:enter-end="transform opacity-100 scale-100"
+       x-transition:leave="transition ease-in duration-75"
+       x-transition:leave-start="transform opacity-100 scale-100"
+       x-transition:leave-end="transform opacity-0 scale-95"
+     >
+       <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+         <a href="#features" class="hover:text-neon-teal transition-colors py-2" @click="mobileMenuOpen = false" aria-label="Features section">Features</a>
+         <a href="#live" class="hover:text-neon-teal transition-colors py-2" @click="mobileMenuOpen = false" aria-label="Live Degen section">Live Degen</a>
+         <a href="#reporter" class="hover:text-neon-teal transition-colors py-2" @click="mobileMenuOpen = false" aria-label="Reporter section">Reporter</a>
+         <a href="#token" class="hover:text-neon-teal transition-colors py-2" @click="mobileMenuOpen = false" aria-label="Token section">Token</a>
+         <a href="#how" class="hover:text-neon-teal transition-colors py-2" @click="mobileMenuOpen = false" aria-label="How it Works section">How it Works</a>
+         <a href="#roadmap" class="hover:text-neon-teal transition-colors py-2" @click="mobileMenuOpen = false" aria-label="Roadmap section">Roadmap</a>
+         <a href="#faq" class="hover:text-neon-teal transition-colors py-2" @click="mobileMenuOpen = false" aria-label="FAQ section">FAQ</a>
+       </div>
+     </div>
+     
+     <div class="hidden md:flex space-x-3 flex-wrap">
+       <a href={import.meta.env.PUBLIC_TG_BOT_LINK || "TG_BOT_LINK"} class="bg-neon-teal text-dark-bg px-4 py-2 rounded font-bold hover:glow transition-all" aria-label="Open Telegram Bot">Open Telegram Bot</a>
+       <a href={import.meta.env.PUBLIC_TG_GROUP_LINK || "TG_GROUP_LINK"} class="border border-neon-purple text-neon-purple px-4 py-2 rounded font-bold hover:bg-neon-purple hover:text-dark-bg transition-all" aria-label="Join Telegram Group">Join Telegram Group</a>
+     </div>
+     
+     <!-- Mobile CTA buttons -->
+     <div x-show="mobileMenuOpen" class="md:hidden container mx-auto px-4 pb-4 flex flex-col space-y-2">
+       <a href={import.meta.env.PUBLIC_TG_BOT_LINK || "TG_BOT_LINK"} class="bg-neon-teal text-dark-bg px-4 py-2 rounded font-bold hover:glow transition-all text-center" aria-label="Open Telegram Bot">Open Telegram Bot</a>
+       <a href={import.meta.env.PUBLIC_TG_GROUP_LINK || "TG_GROUP_LINK"} class="border border-neon-purple text-neon-purple px-4 py-2 rounded font-bold hover:bg-neon-purple hover:text-dark-bg transition-all text-center" aria-label="Join Telegram Group">Join Telegram Group</a>
+     </div>
+   </div>
+ </nav>
+
+  <!-- Hero Section -->
+  <section id="main-content" class="relative py-20 md:py-32 overflow-hidden" role="main">
+    <div class="absolute inset-0 bg-gradient-to-br from-dark-bg to-black opacity-90"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,242,254,0.1)_0%,rgba(0,0,0,0)_70%)]"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="inline-block bg-neon-teal/20 text-neon-teal px-4 py-1 rounded-full text-sm mb-4">Token launch soon on Solana</span>
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+          <span class="block glitch" data-text="Sports alpha, streamed.">Sports alpha, streamed.</span>
+          <span class="block text-gradient text-glitch" data-text="Degens only.">Degens only.</span>
+        </h1>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">
+          Real-time, meme-aware sports intelligence. Live research, injury alerts, odds vibes, and ruthless summaries — built for Telegram. NFA.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href={import.meta.env.PUBLIC_TG_BOT_LINK || "TG_BOT_LINK"} class="bg-neon-teal text-dark-bg px-8 py-4 rounded font-bold text-lg hover:glow transition-all">Open Telegram Bot</a>
+          <a href={import.meta.env.PUBLIC_TG_GROUP_LINK || "TG_GROUP_LINK"} class="border border-neon-purple text-neon-purple px-8 py-4 rounded font-bold text-lg hover:bg-neon-purple hover:text-dark-bg transition-all">Join Telegram Group</a>
+        </div>
+        <p class="text-sm mt-6 opacity-75">Always Not Financial Advice. Cite sources. Respect limits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 bg-dark-card">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">What it Does</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="neon-border rounded-lg p-6 hover:glow transition-all hover-scale animated-border">
+          <div class="w-12 h-12 rounded-full bg-neon-teal/20 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" role="img" aria-label="AI prediction icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-neon-teal glitch" data-text="Predict (AI-first)">Predict (AI-first)</h3>
+          <p class="mb-4">Instant match probabilities and a clear read. Plug 'Team A vs TeamB' and cook. NFA.</p>
+          <a href={import.meta.env.PUBLIC_TG_BOT_LINK || "TG_BOT_LINK"} class="text-neon-green hover:underline">Try it on Telegram →</a>
+        </div>
+        <div class="neon-border rounded-lg p-6 hover:glow transition-all hover-scale animated-border">
+          <div class="w-12 h-12 rounded-full bg-neon-teal/20 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" role="img" aria-label="AI prediction icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-neon-teal glitch" data-text="Live Degen Analysis">Live Degen Analysis</h3>
+          <p class="mb-4">Streams typed updates — injuries, press drops, tactics, odds movement — while it researches.</p>
+          <a href={import.meta.env.PUBLIC_TG_BOT_LINK || "TG_BOT_LINK"} class="text-neon-green hover:underline">Run /degenanalyze in Telegram →</a>
+        </div>
+        <div class="neon-border rounded-lg p-6 hover:glow transition-all hover-scale animated-border">
+          <div class="w-12 h-12 rounded-full bg-neon-teal/20 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" role="img" aria-label="AI prediction icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-neon-teal glitch" data-text="Degen Reporter (Autonomous)">Degen Reporter (Autonomous)</h3>
+          <p class="mb-4">Scheduled 'Degen Tape' posts: high-signal sections with sources. Harsh tone, clean layout.</p>
+          <a href={import.meta.env.PUBLIC_TG_GROUP_LINK || "TG_GROUP_LINK"} class="text-neon-green hover:underline">Enable in your TG group →</a>
+        </div>
+        <div class="neon-border rounded-lg p-6 hover:glow transition-all hover-scale animated-border">
+          <div class="w-12 h-12 rounded-full bg-neon-teal/20 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" role="img" aria-label="AI prediction icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 00-2 2v6a2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-neon-teal glitch" data-text="Odds & Market Vibes">Odds & Market Vibes</h3>
+          <p class="mb-4">Normalizes lines into H/D/A snapshots, surfaces shifts when they matter.</p>
+        </div>
+        <div class="neon-border rounded-lg p-6 hover:glow transition-all hover-scale animated-border">
+          <div class="w-12 h-12 rounded-full bg-neon-teal/20 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-neon-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" role="img" aria-label="AI prediction icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-neon-teal glitch" data-text="Sources & Recency">Sources & Recency</h3>
+          <p class="mb-4">Prioritizes reputable domains and fresh publish times. Tooling never shares raw HTML.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Degen Analysis Section -->
+  <section id="live" class="py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Live Degen Analysis</h2>
+      <div class="flex flex-col lg:flex-row gap-12 items-center w-full">
+        <div class="lg:w-1/2">
+          <p class="text-xl mb-8">Coverage-driven research with a ruthless feed. It finds fresh, reputable sources, extracts hard facts, and streams useful notes — fast.</p>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <div class="bg-neon-teal rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1 flex-shrink-0">1</div>
+              <p><span class="font-bold">Plan queries</span> (team, context, reputable site hints)</p>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-neon-teal rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1 flex-shrink-0">2</div>
+              <p><span class="font-bold">Discover</span> (search + dedupe; whitelist-first)</p>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-neon-teal rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1 flex-shrink-0">3</div>
+              <p><span class="font-bold">Fetch/Parse</span> (bounded; published time)</p>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-neon-teal rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1 flex-shrink-0">4</div>
+              <p><span class="font-bold">Extract</span> (strict JSON: injuries, quotes, lineup, tactics, odds)</p>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-neon-teal rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1 flex-shrink-0">5</div>
+              <p><span class="font-bold">Synthesize</span> (report with sources; NFA)</p>
+            </div>
+          </div>
+          <a href={import.meta.env.PUBLIC_TG_BOT_LINK || "TG_BOT_LINK"} class="inline-block mt-8 bg-neon-teal text-dark-bg px-6 py-3 rounded font-bold hover:glow transition-all">Run /degenanalyze in Telegram</a>
+        </div>
+        <div class="lg:w-1/2">
+          <div class="neon-border rounded-lg p-6 mb-6">
+            <h3 class="font-bold mb-3">Sample typed updates</h3>
+            <div class="space-y-3">
+              <div class="flex items-start">
+                <span class="text-neon-teal mr-2">🩹</span>
+                <span>Injury Alert on [skysports.com] — hamstring doubt</span>
+              </div>
+              <div class="flex items-start">
+                <span class="text-neon-teal mr-2">📈</span>
+                <span>Bookie Shift on [reuters.com] — H +2.5%</span>
+              </div>
+              <div class="flex items-start">
+                <span class="text-neon-teal mr-2">🎙️</span>
+                <span>Press Drop — coach confirms rotation</span>
+              </div>
+              <div class="flex items-start">
+                <span class="text-neon-teal mr-2">🧠</span>
+                <span>Tactical Read — shape tweak to a back three</span>
+              </div>
+            </div>
+          <div class="neon-border rounded-lg p-6">
+            <h3 class="font-bold mb-3">Final report mock</h3>
+            <div class="space-y-2">
+              <p class="font-bold">Match Preview: Team A vs Team B</p>
+              <p><span class="text-neon-teal">Injuries:</span> 2 key players doubtful for Team A</p>
+              <p><span class="text-neon-teal">Tactics:</span> Team B likely to use a back three formation</p>
+              <p><span class="text-neon-teal">Odds:</span> Home win probability at 45% (down 3% from yesterday)</p>
+              <p><span class="text-neon-teal">Sources:</span> skysports.com, reuters.com, teama-official.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Degen Reporter Section -->
+  <section id="reporter" class="py-20 bg-dark-card">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Autonomous 'Degen Tape' (Group Mode)</h2>
+      <div class="flex flex-col lg:flex-row gap-12 items-center w-full">
+        <div class="lg:w-1/2">
+          <div class="neon-border rounded-lg p-6 mb-6">
+            <h3 class="font-bold mb-3">Sample Degen Tape</h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-bold text-neon-teal">Injury Alerts</h4>
+                <p>🩹 Team A striker out for 3 weeks with hamstring injury</p>
+              </div>
+              <div>
+                <h4 class="font-bold text-neon-teal">Pressers + Quotes</h4>
+                <p>🎙️ Coach confirms tactical shift to 3-5-2 formation</p>
+              </div>
+              <div>
+                <h4 class="font-bold text-neon-teal">Lineup Intel</h4>
+                <p>📋 Expected lineup released with 3 new starters</p>
+              </div>
+              <div>
+                <h4 class="font-bold text-neon-teal">Odds & Market Vibes</h4>
+                <p>📈 Away win odds shortened by 5% after lineup news</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-1/2">
+          <ul class="space-y-6">
+            <li class="flex items-start">
+              <div class="bg-neon-teal rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</div>
+              <p><span class="font-bold">Admin toggles on in your group;</span> bot posts on cadence</p>
+            </li>
+            <li class="flex items-start">
+              <div class="bg-neon-teal rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</div>
+              <p><span class="font-bold">Sections:</span> Injury Alerts, Pressers + Quotes, Lineup Intel, Odds & Market Vibes, Transfers, Other Heat</p>
+            </li>
+            <li class="flex items-start">
+              <div class="bg-neon-teal rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</div>
+              <p><span class="font-bold">Reputable sources first;</span> recency-biased; no dupes</p>
+            </li>
+            <li class="flex items-start">
+              <div class="bg-neon-teal rounded-full w-6 h-6 flex items-center justify-center mr-4 mt-1 flex-shrink-0">✓</div>
+              <p><span class="font-bold">Optional breaking items</span> for big signals</p>
+            </li>
+          </ul>
+          <a href={import.meta.env.PUBLIC_TG_GROUP_LINK || "TG_GROUP_LINK"} class="inline-block mt-8 bg-neon-purple text-dark-bg px-6 py-3 rounded font-bold hover:glow transition-all">Enable in your TG group</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Token Section -->
+  <section id="token" class="py-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-2xl mx-auto text-center neon-border rounded-lg p-8 relative overflow-hidden">
+        <!-- Solana branding cue -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500"></div>
+        <span class="inline-block bg-neon-purple/20 text-neon-purple px-4 py-1 rounded-full text-sm mb-4">Launching soon on Solana</span>
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">A utility-first token for degens who actually read</h2>
+        <p class="text-xl mb-6">
+          The token aligns with the system's utility: access to premium degen features, community perks, and future governance hooks. We'll announce specifics in the Telegram group. No promises, no hype — ship first.
+        </p>
+        <p class="text-sm mb-8 opacity-75">Nothing here is financial advice. Participation is your own choice. Read everything.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href={import.meta.env.PUBLIC_TG_GROUP_LINK || "TG_GROUP_LINK"} class="bg-neon-purple text-dark-bg px-6 py-3 rounded font-bold hover:glow transition-all">Get Launch Alerts</a>
+          <a href={import.meta.env.PUBLIC_TG_BOT_LINK || "TG_BOT_LINK"} class="border border-neon-teal text-neon-teal px-6 py-3 rounded font-bold hover:bg-neon-teal hover:text-dark-bg transition-all">Open Telegram Bot</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how" class="py-20 bg-dark-card">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">How It Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center p-6">
+          <div class="w-16 h-16 rounded-full bg-neon-teal/20 flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl font-bold text-neon-teal">1</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Reputable-First</h3>
+          <p>Whitelisted domains, per-domain caps, and backoffs. Freshness weighted.</p>
+        </div>
+        <div class="text-center p-6">
+          <div class="w-16 h-16 rounded-full bg-neon-teal/20 flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl font-bold text-neon-teal">2</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Structured Extraction</h3>
+          <p>Strict schema: injuries, quotes, lineup, tactics, venue, odds. No raw HTML leaves the app.</p>
+        </div>
+        <div class="text-center p-6">
+          <div class="w-16 h-16 rounded-full bg-neon-teal/20 flex items-center justify-center mx-auto mb-6">
+            <span class="text-2xl font-bold text-neon-teal">3</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Final Synthesis</h3>
+          <p>Concise degen summary with sources. Always NFA.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap Section -->
+  <section id="roadmap" class="py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Roadmap</h2>
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-neon-teal/20"></div>
+        
+        <div class="space-y-12">
+          <!-- Milestone 1 -->
+          <div class="relative flex items-center">
+            <div class="w-1/2 pr-8 text-right text-left md:text-right">
+              <h3 class="text-xl font-bold">Phase 1 — Live Degen shipped</h3>
+              <p class="text-neon-green">Done</p>
+            </div>
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-neon-teal border-4 border-dark-bg z-10"></div>
+            <div class="w-1/2 pl-8 text-right md:text-left"></div>
+          </div>
+          
+          <!-- Milestone 2 -->
+          <div class="relative flex items-center">
+            <div class="w-1/2 pr-8 text-right text-left md:text-right"></div>
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-neon-teal border-4 border-dark-bg z-10"></div>
+            <div class="w-1/2 pl-8 text-right md:text-left">
+              <h3 class="text-xl font-bold">Phase 2 — Autonomous Reporter + RSS</h3>
+              <p class="text-neon-green">Done</p>
+            </div>
+          
+          <!-- Milestone 3 -->
+          <div class="relative flex items-center">
+            <div class="w-1/2 pr-8 text-right text-left md:text-right">
+              <h3 class="text-xl font-bold">Phase 3 — Observability & Caching</h3>
+              <p class="text-neon-purple">Planned</p>
+            </div>
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-neon-purple border-4 border-dark-bg z-10"></div>
+            <div class="w-1/2 pl-8 text-right md:text-left"></div>
+          </div>
+          
+          <!-- Milestone 4 -->
+          <div class="relative flex items-center">
+            <div class="w-1/2 pr-8 text-right text-left md:text-right"></div>
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-neon-purple border-4 border-dark-bg z-10"></div>
+            <div class="w-1/2 pl-8 text-right md:text-left">
+              <h3 class="text-xl font-bold">Phase 4 — Token Launch (Solana)</h3>
+              <p class="text-neon-purple">Soon</p>
+            </div>
+          
+          <!-- Milestone 5 -->
+          <div class="relative flex items-center">
+            <div class="w-1/2 pr-8 text-right text-left md:text-right">
+              <h3 class="text-xl font-bold">Phase 5 — Odds Provider (feature-flag)</h3>
+              <p class="text-neon-purple">Planned</p>
+            </div>
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-neon-purple border-4 border-dark-bg z-10"></div>
+            <div class="w-1/2 pl-8 text-right md:text-left"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof Section -->
+  <section class="py-20 bg-dark-card">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Community</h2>
+      <div class="flex flex-wrap justify-center gap-8 w-full">
+        <div class="text-center w-full sm:w-auto">
+          <div class="text-3xl font-bold text-neon-teal">10K+</div>
+          <div>Sources Parsed</div>
+        </div>
+        <div class="text-center w-full sm:w-auto">
+          <div class="text-3xl font-bold text-neon-teal">5K+</div>
+          <div>Typed Updates Shipped</div>
+        </div>
+        <div class="text-center w-full sm:w-auto">
+          <div class="text-3xl font-bold text-neon-teal">500+</div>
+          <div>Active Users</div>
+        </div>
+        <div class="text-center w-full sm:w-auto">
+          <div class="text-3xl font-bold text-neon-teal">50+</div>
+          <div>Telegram Groups</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">FAQ</h2>
+      <div class="max-w-3xl mx-auto space-y-4 w-full" x-data="{ activeFAQ: null }" role="region" aria-label="Frequently Asked Questions">
+        <div class="neon-border rounded-lg w-full" x-data="{ id: 1 }">
+          <button
+            class="w-full text-left p-6 flex justify-between items-center focus:outline-none"
+            @click="activeFAQ = (activeFAQ === id ? null : id)"
+            :class="{ 'neon-border-b rounded-b-none': activeFAQ === id }"
+            :aria-expanded="activeFAQ === id ? 'true' : 'false'"
+            aria-controls="faq-answer-1"
+          >
+            <h3 class="text-xl font-bold">Is this financial advice?</h3>
+            <svg
+              class="w-5 h-5 transition-transform duration-300"
+              :class="{ 'transform rotate-180': activeFAQ === id }"
+              fill="none"
+              viewBox="0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div
+            id="faq-answer-1"
+            class="px-6 overflow-hidden transition-all duration-300 ease-in-out"
+            :class="{ 'max-h-0 opacity-0': activeFAQ !== id, 'max-h-96 opacity-100 pb-6': activeFAQ === id }"
+            role="region"
+            aria-labelledby="faq-question-1"
+          >
+            <p>No. Always NFA. We cite sources and surface facts; you decide.</p>
+          </div>
+        </div>
+        
+        <div class="neon-border rounded-lg w-full" x-data="{ id: 2 }">
+          <button
+            id="faq-question-2"
+            class="w-full text-left p-6 flex justify-between items-center focus:outline-none"
+            @click="activeFAQ = (activeFAQ === id ? null : id)"
+            :class="{ 'neon-border-b rounded-b-none': activeFAQ === id }"
+            :aria-expanded="activeFAQ === id ? 'true' : 'false'"
+            aria-controls="faq-answer-2"
+          >
+            <h3 class="text-xl font-bold">Which sports are supported?</h3>
+            <svg
+              class="w-5 h-5 transition-transform duration-300"
+              :class="{ 'transform rotate-180': activeFAQ === id }"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div
+            id="faq-answer-2"
+            class="px-6 overflow-hidden transition-all duration-300 ease-in-out"
+            :class="{ 'max-h-0 opacity-0': activeFAQ !== id, 'max-h-96 opacity-100 pb-6': activeFAQ === id }"
+            role="region"
+            aria-labelledby="faq-question-2"
+          >
+            <p>Soccer first; major sports are in rotation. It's expanding.</p>
+          </div>
+        </div>
+        
+        <div class="neon-border rounded-lg w-full" x-data="{ id: 3 }">
+          <button
+            id="faq-question-3"
+            class="w-full text-left p-6 flex justify-between items-center focus:outline-none"
+            @click="activeFAQ = (activeFAQ === id ? null : id)"
+            :class="{ 'neon-border-b rounded-b-none': activeFAQ === id }"
+            :aria-expanded="activeFAQ === id ? 'true' : 'false'"
+            aria-controls="faq-answer-3"
+          >
+            <h3 class="text-xl font-bold">How do I start?</h3>
+            <svg
+              class="w-5 h-5 transition-transform duration-300"
+              :class="{ 'transform rotate-180': activeFAQ === id }"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div
+            id="faq-answer-3"
+            class="px-6 overflow-hidden transition-all duration-300 ease-in-out"
+            :class="{ 'max-h-0 opacity-0': activeFAQ !== id, 'max-h-96 opacity-100 pb-6': activeFAQ === id }"
+            role="region"
+            aria-labelledby="faq-question-3"
+          >
+            <p>Open the Telegram bot. Try <code class="bg-dark-bg px-2 py-1 rounded">/degenanalyze TeamA vs TeamB</code>.</p>
+          </div>
+        </div>
+        
+        <div class="neon-border rounded-lg w-full" x-data="{ id: 4 }">
+          <button
+            id="faq-question-4"
+            class="w-full text-left p-6 flex justify-between items-center focus:outline-none"
+            @click="activeFAQ = (activeFAQ === id ? null : id)"
+            :class="{ 'neon-border-b rounded-b-none': activeFAQ === id }"
+            :aria-expanded="activeFAQ === id ? 'true' : 'false'"
+            aria-controls="faq-answer-4"
+          >
+            <h3 class="text-xl font-bold">How do I enable the Reporter?</h3>
+            <svg
+              class="w-5 h-5 transition-transform duration-300"
+              :class="{ 'transform rotate-180': activeFAQ === id }"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div
+            id="faq-answer-4"
+            class="px-6 overflow-hidden transition-all duration-300 ease-in-out"
+            :class="{ 'max-h-0 opacity-0': activeFAQ !== id, 'max-h-96 opacity-100 pb-6': activeFAQ === id }"
+            role="region"
+            aria-labelledby="faq-question-4"
+          >
+            <p>Invite the bot to your TG group as admin, then <code class="bg-dark-bg px-2 py-1 rounded">/degenreporter_on</code>.</p>
+          </div>
+        </div>
+        
+        <div class="neon-border rounded-lg w-full" x-data="{ id: 5 }">
+          <button
+            id="faq-question-5"
+            class="w-full text-left p-6 flex justify-between items-center focus:outline-none"
+            @click="activeFAQ = (activeFAQ === id ? null : id)"
+            :class="{ 'neon-border-b rounded-b-none': activeFAQ === id }"
+            :aria-expanded="activeFAQ === id ? 'true' : 'false'"
+            aria-controls="faq-answer-5"
+          >
+            <h3 class="text-xl font-bold">What about odds?</h3>
+            <svg
+              class="w-5 h-5 transition-transform duration-300"
+              :class="{ 'transform rotate-180': activeFAQ === id }"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div
+            id="faq-answer-5"
+            class="px-6 overflow-hidden transition-all duration-300 ease-in-out"
+            :class="{ 'max-h-0 opacity-0': activeFAQ !== id, 'max-h-96 opacity-100 pb-6': activeFAQ === id }"
+            role="region"
+            aria-labelledby="faq-question-5"
+          >
+            <p>We normalize odds mentions and detect movement deltas; no bookmaker scraping.</p>
+          </div>
+        </div>
+        
+        <div class="neon-border rounded-lg w-full" x-data="{ id: 6 }">
+          <button
+            id="faq-question-6"
+            class="w-full text-left p-6 flex justify-between items-center focus:outline-none"
+            @click="activeFAQ = (activeFAQ === id ? null : id)"
+            :class="{ 'neon-border-b rounded-b-none': activeFAQ === id }"
+            :aria-expanded="activeFAQ === id ? 'true' : 'false'"
+            aria-controls="faq-answer-6"
+          >
+            <h3 class="text-xl font-bold">Privacy?</h3>
+            <svg
+              class="w-5 h-5 transition-transform duration-300"
+              :class="{ 'transform rotate-180': activeFAQ === id }"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div
+            id="faq-answer-6"
+            class="px-6 overflow-hidden transition-all duration-300 ease-in-out"
+            :class="{ 'max-h-0 opacity-0': activeFAQ !== id, 'max-h-96 opacity-100 pb-6': activeFAQ === id }"
+            role="region"
+            aria-labelledby="faq-question-6"
+          >
+            <p>We do not collect personal data from the website. Telegram terms apply.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-dark-bg to-black opacity-90"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,242,254,0.1)_0%,rgba(0,0,0,0)_70%)]"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8">Ready to cook?</h2>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href={import.meta.env.PUBLIC_TG_BOT_LINK || "TG_BOT_LINK"} class="bg-neon-teal text-dark-bg px-8 py-4 rounded font-bold text-lg hover:glow transition-all">Open Telegram Bot</a>
+          <a href={import.meta.env.PUBLIC_TG_GROUP_LINK || "TG_GROUP_LINK"} class="border border-neon-purple text-neon-purple px-8 py-4 rounded font-bold text-lg hover:bg-neon-purple hover:text-dark-bg transition-all">Join Telegram Group</a>
+        </div>
+        <p class="text-sm mt-6 opacity-75">Always NFA. Respect the game.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark-card border-t border-dark-border py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center w-full">
+        <div class="text-2xl font-bold text-gradient mb-6 md:mb-0">degensport.AI</div>
+        <div class="flex flex-wrap justify-center gap-6 mb-6 md:mb-0 w-full">
+          <a href="#features" class="hover:text-neon-teal transition-colors">Features</a>
+          <a href="#live" class="hover:text-neon-teal transition-colors">Live</a>
+          <a href="#reporter" class="hover:text-neon-teal transition-colors">Reporter</a>
+          <a href="#token" class="hover:text-neon-teal transition-colors">Token</a>
+          <a href="#roadmap" class="hover:text-neon-teal transition-colors">Roadmap</a>
+          <a href="#faq" class="hover:text-neon-teal transition-colors">FAQ</a>
+        </div>
+        <div class="flex gap-4 flex-wrap">
+          <a href={import.meta.env.PUBLIC_TG_BOT_LINK || "TG_BOT_LINK"} class="hover:text-neon-teal transition-colors">Telegram Bot</a>
+          <a href={import.meta.env.PUBLIC_TG_GROUP_LINK || "TG_GROUP_LINK"} class="hover:text-neon-teal transition-colors">Telegram Group</a>
+          <a href={import.meta.env.PUBLIC_GITHUB_REPO_LINK || "GITHUB_REPO_LINK"} class="hover:text-neon-teal transition-colors">GitHub</a>
+        </div>
+      <div class="border-t border-dark-border mt-8 pt-8 text-center text-sm opacity-75 w-full">
+        <p>© degensport.AI — Not Financial Advice. All product names and logos are property of their respective owners.</p>
+        <div class="mt-2 flex-wrap justify-center gap-4">
+          <a href="/privacy" class="hover:text-neon-teal transition-colors mr-4">Privacy Policy</a>
+          <a href="/terms" class="hover:text-neon-teal transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</Layout>
