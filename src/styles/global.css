@@ -30,6 +30,7 @@
 }
 
 /* Custom utility classes */
+[x-cloak] { display: none !important; }
 @layer utilities {
   .backdrop-blur-sm {
     /* Fallback for browsers that don't support backdrop-filter */

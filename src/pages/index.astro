@@ -20,10 +20,10 @@ import '../styles/global.css';
        aria-controls="mobile-menu"
        aria-label="Toggle navigation menu"
      >
-       <svg x-show="!mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+       <svg x-cloak x-show="!mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
        </svg>
-       <svg x-show="mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+       <svg x-cloak x-show="mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
        </svg>
      </button>
@@ -39,17 +39,18 @@ import '../styles/global.css';
        <a href="#faq" class="hover:text-neon-teal transition-colors" aria-label="FAQ section">FAQ</a>
      </div>
      
-     <!-- Mobile navigation menu -->
+     <!-- Mobile navigation menu (pushes content down) -->
      <div
+       x-cloak
        x-show="mobileMenuOpen"
        id="mobile-menu"
-       class="md:hidden absolute top-full left-0 right-0 bg-dark-bg border-b border-dark-border z-50"
+       class="md:hidden w-full bg-dark-bg border-b border-dark-border z-50"
        x-transition:enter="transition ease-out duration-100"
-       x-transition:enter-start="transform opacity-0 scale-95"
-       x-transition:enter-end="transform opacity-100 scale-100"
+       x-transition:enter-start="opacity-0 -translate-y-2"
+       x-transition:enter-end="opacity-100 translate-y-0"
        x-transition:leave="transition ease-in duration-75"
-       x-transition:leave-start="transform opacity-100 scale-100"
-       x-transition:leave-end="transform opacity-0 scale-95"
+       x-transition:leave-start="opacity-100 translate-y-0"
+       x-transition:leave-end="opacity-0 -translate-y-2"
      >
        <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
          <a href="#features" class="hover:text-neon-teal transition-colors py-2" @click="mobileMenuOpen = false" aria-label="Features section">Features</a>
