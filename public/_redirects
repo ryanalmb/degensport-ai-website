@@ -1,0 +1,9 @@
+# Redirects from what the browser requests to what we serve
+# Example redirects - customize as needed for your site
+
+# Redirect old paths to new paths
+# /old-path              /new-path               301
+# /blog/*                /new-blog/:splat        301
+
+# Redirect for SPA (Single Page Application) - uncomment if needed
+# /*                     /index.html             200

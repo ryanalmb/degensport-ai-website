@@ -1,0 +1,21 @@
+# Set custom headers for all files
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer-when-downgrade
+
+# Set custom headers for specific file types
+*.js
+  Cache-Control: public, max-age=31536000
+*.css
+  Cache-Control: public, max-age=31536000
+*.png
+  Cache-Control: public, max-age=86400
+*.jpg
+  Cache-Control: public, max-age=86400
+*.jpeg
+  Cache-Control: public, max-age=86400
+*.svg
+  Cache-Control: public, max-age=86400
+*.ico
+  Cache-Control: public, max-age=86400
